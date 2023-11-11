@@ -21,6 +21,7 @@ start the server by using command python server.py
 run each client[x].py file from their own terminal by using command python client[x].py 8080
 
 wait for the model to complete training and see the evaluation metrics printed in the server terminal
+
 -----------------------
 Requirements:
 
