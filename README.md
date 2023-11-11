@@ -12,6 +12,13 @@ The clients_pytorch.py file contains the classes used to create the model in eac
 The pytorch.py file contains the same model specifications as the federated learning, but in a centralized 'vanilla' approach. this allows for easy comparison.
 
 The files with 'dp" in their name are the ones that apply differential privacy to the model parameters. Also here it includes one in federated setup and another for centralized approach.
+------------------------
+server.py
+
+the aggregated metrics: F1, accuracy, precision, recall are printed after a run is completed and after each global training round.
+
+in differential privacy mode, also the aggregated epsilon (privacy guarantee) is printed during training
+
 
 -----------------------
 HOW TO RUN
@@ -28,11 +35,4 @@ Requirements:
 - Torch 1.13.1
 - Opacus 1.1.2
 - Flwr 1.5.0
-
-------------------------
-server.py
-
-the aggregated metrics: F1, accuracy, precision, recall are printed after a run is completed and after each global training round.
-
-in differential privacy mode, also the aggregated epsilon (privacy guarantee) is printed during training
 
