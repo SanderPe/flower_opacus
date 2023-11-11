@@ -50,10 +50,21 @@ class AggregateCustomMetricStrategy(fl.server.strategy.FedAvg):
         aggregated_parameters, aggregated_metrics = super().aggregate_fit(server_round, results, failures)
 
         if aggregated_parameters is not None:
+            dp = False
+            for _,r in results:
+                if r.metrics:
+                    dp = True
+            if dp:
 
-
+                epsilon = [r.metrics["epsilon"] * r.num_examples for _, r in results]
+                examples = [r.num_examples for _, r in results]
+                aggregated_epsilon = sum(epsilon) / sum(examples)
+                print(f"Round {server_round} epsilon aggregated from client results: {aggregated_epsilon}")
+                return aggregated_parameters, {"epsilon": aggregated_epsilon}
 
             return aggregated_parameters, aggregated_metrics
+
+
 
 # Create strategy and run server
 strategy = AggregateCustomMetricStrategy()
@@ -61,7 +72,7 @@ strategy = AggregateCustomMetricStrategy()
 # Start Flower server for three rounds of federated learning
 fl.server.start_server(
         server_address = 'localhost:'+str(8080) ,
-        config=fl.server.ServerConfig(num_rounds=20) ,
+        config=fl.server.ServerConfig(num_rounds=1) ,
         grpc_max_message_length = 1024*1024*1024,
         strategy = strategy,
 
