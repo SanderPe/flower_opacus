@@ -1,6 +1,5 @@
 import flwr as fl
 
-from clients import FlowerClient
 from clients_pytorch import FlowerClient
 from clients_dp_pytorch import FlowerClient
 # Start Flower client
