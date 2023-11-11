@@ -211,8 +211,7 @@ class FlowerClient(fl.client.NumPyClient):
     def fit(self, parameters, config):
         self.set_parameters(parameters)
         epsilon, loss = train(self.net, self.train_dl,self.optimizer,self.privacy_engine, epochs=EPOCHS)
-        print(epsilon)
-        return self.get_parameters(config={}), self.num_examples["trainset"], {}
+        return self.get_parameters(config={}), self.num_examples["trainset"], {"epsilon" : float(epsilon)}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
