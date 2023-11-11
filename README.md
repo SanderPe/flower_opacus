@@ -32,6 +32,7 @@ Requirements:
 ------------------------
 server.py
 
-the aggregated metrics: F1, accuracy, precision, recall are printed after a run is completed and after each global training round
+the aggregated metrics: F1, accuracy, precision, recall are printed after a run is completed and after each global training round.
+
 in differential privacy mode, also the aggregated epsilon (privacy guarantee) is printed during training
 
